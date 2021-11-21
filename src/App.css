@@ -36,9 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-.DevNotification {
-  color: whitesmoke;
-  position: absolute;
-  bottom: 0;
-}
