@@ -19,10 +19,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://api.codetabs.com/v1/proxy/?quest=https://api.faraway.cam/v1/uuid/a19bd368-5bfa-4a64-9aa6-a88ef8c2e135?API_KEY=123')
+    fetch('https://api.codetabs.com/v1/proxy/?quest=https://api.faraway.cam/v1/uuid/'+this.getUuidFromUrl()+'?API_KEY=123')
     .then((response) => response.json())
     .then((responseJson) => {
-      console.log(responseJson.photourlhi);
+      
       this.setState({
         photourlhi: responseJson.photourlhi,
       });
@@ -34,12 +34,21 @@ class App extends React.Component {
     });
   }
 
+  getUuidFromUrl(){
+    if (window.location.search.charAt(0) === '?'){
+      return window.location.search.substring(1);
+    }else{
+      return 'a19bd368-5bfa-4a64-9aa6-a88ef8c2e135';
+    }
+  }
+
   render(){
     return (
       <div className="App">
         <header className="App-header">
-          <img src={this.state.photourlhi} className={(this.state.photourlhi === logo) ? "App-logo" : "App-view"} alt="logo" />
-          <p>Welcome.</p>
+          <img src={this.state.photourlhi} 
+            className={(this.state.photourlhi === logo) ? "App-logo" : "App-view"} 
+            alt="logo" />
         </header>
       </div>
     );
