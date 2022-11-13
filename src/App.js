@@ -18,6 +18,7 @@ class App extends React.Component {
     super(props);
 
     this.myButtonRef = React.createRef();
+    this.myApiResponse = {};
 
     this.state = {
       photourlhi: logo,
@@ -31,6 +32,7 @@ class App extends React.Component {
     .then((response) => response.json())
     .then((responseJson) => {
       
+      this.myApiResponse = responseJson;
       this.setState({
         photourlhi: responseJson.photourlhi,
         gyro: {},
@@ -91,7 +93,8 @@ class App extends React.Component {
           : <></>}
 
           {console.log('this.state.gyro: ',this.state.gyro)}
-          <Compass {...this.state} />
+          {console.log('this.myApiResponse: ',this.myApiResponse)}
+          <Compass {...this.state.gyro} {...this.myApiResponse} />
 
           <img src={this.state.photourlhi} 
             className={(this.state.photourlhi === logo) ? "App-logo" : "App-view"} 

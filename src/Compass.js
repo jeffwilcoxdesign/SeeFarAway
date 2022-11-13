@@ -1,20 +1,21 @@
 /* eslint-disable no-useless-constructor */
 import React from 'react';
-import logo from './logo.svg';
+import compassBg from './img/compass_design_2.png';
 //import './App.css';
 
 class Compass extends React.Component {
   constructor(props) {
     super(props);
-    console.log('Compass props: ',props);
+    
   }
 
   render(props) {
-  
+
     return (
       <div className="Compass">
-          {'hello compass props: '+this.props.toString()}
-          <img src={logo} alt="logo" />
+          {console.log('Compass props: ',this.props)}
+          
+          <img src={compassBg} alt="compass background" />
       </div>
     );
   }
