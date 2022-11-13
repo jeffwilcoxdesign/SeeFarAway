@@ -36,4 +36,17 @@
 .App-view {
   height: 100vh;
   width: auto;
+  /*animation: fadeIn 5s;  apply with js?  */
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+button {
+  font-size: x-large;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  
 }
