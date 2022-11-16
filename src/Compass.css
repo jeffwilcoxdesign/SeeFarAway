@@ -1,3 +1,17 @@
 .Compass {
   position: absolute;
+
+  z-index: 6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.Compass-asset {
+  z-index: 6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }

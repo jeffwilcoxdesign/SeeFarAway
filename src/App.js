@@ -94,6 +94,7 @@ class App extends React.Component {
 
           {console.log('this.state.gyro: ',this.state.gyro)}
           {console.log('this.myApiResponse: ',this.myApiResponse)}
+          
           <Compass {...this.state.gyro} {...this.myApiResponse} />
 
           <img src={this.state.photourlhi} 
