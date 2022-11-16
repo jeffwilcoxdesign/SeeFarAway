@@ -92,9 +92,8 @@ class App extends React.Component {
             </button> 
           : <></>}
 
-          {console.log('this.state.gyro: ',this.state.gyro)}
-          {console.log('this.myApiResponse: ',this.myApiResponse)}
-          
+          {console.log('myApiResponse trueheading: ',this.myApiResponse?.fc?.trueheading)}
+
           <Compass {...this.state.gyro} {...this.myApiResponse} />
 
           <img src={this.state.photourlhi} 
