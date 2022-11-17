@@ -8,20 +8,24 @@ import './Compass.css';
 class Compass extends React.Component {
   constructor(props) {
     super(props);
+    // add state for tracking the rotation amount..
     
+
   }
 
   render(props) {
 
+    // TODO: rotatte arrowMrk based on alpha value below?
+    
     return (
       <div className="Compass">
-          {/*console.log('Compass props: ',this.props)*/}
-          {console.log('Compass alpha: ',this.props.alpha)}
+          {/*console.log('Compass props.fc: ',this.props.trueheading)*/}
+          { console.log('Compass rotationVal: ',this.props.rotationVal) }
 
 
 
-          <img src={arrowMrk} className="Compass-asset" alt="arrow mark" />
-          <img src={compassBg} className="Compass-asset" alt="compass background" style={{rotate:this.props.alpha+'deg'}} />
+          <img src={arrowMrk} className="Compass-asset" alt="arrow mark" style={{ rotate:this.props.trueheading+'deg' }} />
+          <img src={compassBg} className="Compass-asset" alt="compass background" style={{ rotate:this.props.rotationVal+'deg', zIndex:1 }} />
           <img src={circleImg} className="Compass-asset" alt="circle" />
       </div>
     );

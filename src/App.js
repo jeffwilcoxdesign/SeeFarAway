@@ -24,6 +24,7 @@ class App extends React.Component {
       photourlhi: logo,
       gyro: {},
       initalized: false,
+      rotationVal: 0,
     };
   }
 
@@ -37,6 +38,7 @@ class App extends React.Component {
         photourlhi: responseJson.photourlhi,
         gyro: {},
         initalized: false,
+        rotationVal: 0,
       });
 
       // create setupGyro instance for requesting permission to device event data
@@ -67,6 +69,7 @@ class App extends React.Component {
         gyro: { alpha, beta, gamma },
         photourlhi: this.state.photourlhi,
         initalized: true,
+        rotationVal: (this.state.rotationVal+alpha),
       });
     //});
     
@@ -79,6 +82,7 @@ class App extends React.Component {
         gyro: {},
         photourlhi: this.state.photourlhi,
         initalized: true,
+        rotationVal: 0,
       });
     }
   
@@ -92,9 +96,11 @@ class App extends React.Component {
             </button> 
           : <></>}
 
-          {console.log('myApiResponse trueheading: ',this.myApiResponse?.fc?.trueheading)}
+          {/*console.log('myApiResponse trueheading: ',this.myApiResponse?.fc?.trueheading)*/}
 
-          <Compass {...this.state.gyro} {...this.myApiResponse} />
+
+            
+          <Compass {...this.state} {...this.myApiResponse?.fc} />
 
           <img src={this.state.photourlhi} 
             className={(this.state.photourlhi === logo) ? "App-logo" : "App-view"} 
