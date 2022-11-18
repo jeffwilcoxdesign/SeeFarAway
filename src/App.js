@@ -59,20 +59,31 @@ class App extends React.Component {
     }
   }
 
-  dataHandler(event) {
-    const { alpha, beta, gamma } = event.rotationRate;
-    //console.log(event);// yo data!!!
+  // credit: https://www.joshwcomeau.com/snippets/javascript/debounce/
+  debounce(callback, wait) {
+    let timeoutId = null;
+    return (...args) => {
+      window.clearTimeout(timeoutId);
+      timeoutId = window.setTimeout(() => {
+        callback.apply(null, args);
+      }, wait);
+    };
+  }
 
-    // re-render child component as gyro state data changes every 300ms
-    //debounce(300, function(e) {
+  dataHandler(event) {
+    console.log(event);// debug
+    const { alpha, beta, gamma } = event;
+    //const { alpha, beta, gamma } = event.rotationRate;
+    //console.log('this.debounce: ',this.debounce);
+
+    //this.debounce((ev) => {
       this.setState({
         gyro: { alpha, beta, gamma },
         photourlhi: this.state.photourlhi,
         initalized: true,
         rotationVal: (this.state.rotationVal+alpha),
       });
-    //});
-    
+    //}, 250).bind(this);
   }
 
   render() {
@@ -95,10 +106,6 @@ class App extends React.Component {
               You recieved a SeeFarAway vision.<br/>Tap here to view.
             </button> 
           : <></>}
-
-          {/*console.log('myApiResponse trueheading: ',this.myApiResponse?.fc?.trueheading)*/}
-
-
             
           <Compass {...this.state} {...this.myApiResponse?.fc} />
 
