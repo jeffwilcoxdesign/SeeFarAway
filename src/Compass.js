@@ -15,11 +15,8 @@ class Compass extends React.Component {
     
     return (
       <div className="Compass">
-
-          { /*console.log('Compass rotationVal: ',this.props.rotationVal)*/ }
           <img src={arrowMrk} className="Compass-asset" alt="arrow mark" style={{ rotate:this.props.trueheading+'deg' }} />
           <img src={compassBg} className="Compass-asset" alt="compass background" style={{ rotate:(this.props.gyro.alpha)+'deg', zIndex:1 }} />
-          { /*<img src={compassBg} className="Compass-asset" alt="compass background" style={{ rotate:(this.props.rotationVal/10)+'deg', zIndex:1 }} />*/ }
           <img src={circleImg} className="Compass-asset" alt="circle" />
       </div>
     );

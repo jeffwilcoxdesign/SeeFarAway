@@ -24,7 +24,6 @@ class App extends React.Component {
       photourlhi: logo,
       gyro: {},
       initalized: false,
-      rotationVal: 0,
     };
   }
 
@@ -38,7 +37,6 @@ class App extends React.Component {
         photourlhi: responseJson.photourlhi,
         gyro: {},
         initalized: false,
-        rotationVal: 0,
       });
 
       // create setupGyro instance for requesting permission to device event data
@@ -59,31 +57,16 @@ class App extends React.Component {
     }
   }
 
-  // credit: https://www.joshwcomeau.com/snippets/javascript/debounce/
-  debounce(callback, wait) {
-    let timeoutId = null;
-    return (...args) => {
-      window.clearTimeout(timeoutId);
-      timeoutId = window.setTimeout(() => {
-        callback.apply(null, args);
-      }, wait);
-    };
-  }
-
   dataHandler(event) {
-    console.log(event);// debug
+    //console.log(event);// debug
     const { alpha, beta, gamma } = event;
-    //const { alpha, beta, gamma } = event.rotationRate;
-    //console.log('this.debounce: ',this.debounce);
 
-    //this.debounce((ev) => {
       this.setState({
         gyro: { alpha, beta, gamma },
         photourlhi: this.state.photourlhi,
         initalized: true,
-        rotationVal: (this.state.rotationVal+alpha),
       });
-    //}, 250).bind(this);
+
   }
 
   render() {
@@ -93,7 +76,6 @@ class App extends React.Component {
         gyro: {},
         photourlhi: this.state.photourlhi,
         initalized: true,
-        rotationVal: 0,
       });
     }
   
@@ -109,8 +91,12 @@ class App extends React.Component {
             
           <Compass {...this.state} {...this.myApiResponse?.fc} />
 
+          {console.log((Math.floor(this.myApiResponse?.fc?.trueheading) === Math.floor(this.state.gyro.alpha)) ? 'YES YES YESS !!!!' : '' )}
+          {/*console.log('this.myApiResponse?.fc?.trueheading:',this.myApiResponse?.fc?.trueheading)*/}
+          {/*console.log('this.state.gyro.alpha:',this.state.gyro.alpha)*/}
+
           <img src={this.state.photourlhi} 
-            className={(this.state.photourlhi === logo) ? "App-logo" : "App-view"} 
+            className={((Math.floor(this.myApiResponse?.fc?.trueheading) === Math.floor(this.state.gyro.alpha))) ? "App-logo" : "App-view"} 
             alt="logo" />
         </header>
       </div>
