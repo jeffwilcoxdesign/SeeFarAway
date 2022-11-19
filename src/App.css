@@ -1,7 +1,9 @@
 .App {
   text-align: center;
-
+  overflow: hidden;
 }
+
+html {margin: 0; overflow: hidden}
 
 .App-logo {
   height: 40vmin;
@@ -57,4 +59,5 @@ button {
   position: absolute;
   bottom: 0px;
   border-radius: 0px;
+  background: white;
 }

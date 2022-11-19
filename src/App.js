@@ -19,7 +19,7 @@ class App extends React.Component {
 
     this.myButtonRef = React.createRef();
     this.myApiResponse = {};
-    this.showImage = false;// jw: experimental
+    this.showImage = false;
 
     this.state = {
       photourlhi: logo,
@@ -53,6 +53,9 @@ class App extends React.Component {
   }
 
   getUuidFromUrl() {
+    
+    window.screen.orientation?.lock("portrait");
+    
     if (window.location.search.charAt(0) === '?'){
       return window.location.search.substring(1);
     }else{
@@ -61,19 +64,15 @@ class App extends React.Component {
   }
 
   dataHandler(event) {
-    //console.log(event);// debug
-    const { alpha, beta, gamma } = event;
-    
+    const { alpha, beta, gamma } = event;  
     if(Math.floor(this.myApiResponse?.fc?.trueheading) === Math.floor(this.state.gyro.alpha)) this.showImage = true;
 
-
-      this.setState({
-        gyro: { alpha, beta, gamma },
-        photourlhi: this.state.photourlhi,
-        initalized: true,
-        showImage: this.showImage,// false by default val
-      });
-
+    this.setState({
+      gyro: { alpha, beta, gamma },
+      photourlhi: this.state.photourlhi,
+      initalized: true,
+      showImage: this.showImage,// false by default val
+    });
   }
 
   render() {
@@ -90,7 +89,6 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-
           {(this.state.photourlhi !== logo && this.state.initalized === false) 
           ? <button type="button" ref={this.myButtonRef} onClick={initHandler.bind(this)} >
               You recieved a SeeFarAway vision.<br/>Tap here to view.
@@ -98,9 +96,6 @@ class App extends React.Component {
           : <></>}
             
           {(!this.state.showImage) ? <Compass {...this.state} {...this.myApiResponse?.fc} /> : <></>}
-
-          {console.log((Math.floor(this.myApiResponse?.fc?.trueheading) === Math.floor(this.state.gyro.alpha)) ? 'YES YES YESS !!!!' : '' )}
-
 
           <img src={this.state.photourlhi} 
             className={(((this.state.showImage))) ? "App-view" : "App-hide"} 
