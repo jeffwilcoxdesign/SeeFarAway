@@ -19,11 +19,13 @@ class App extends React.Component {
 
     this.myButtonRef = React.createRef();
     this.myApiResponse = {};
+    this.showImage = false;// jw: experimental
 
     this.state = {
       photourlhi: logo,
       gyro: {},
       initalized: false,
+      showImage: false,
     };
   }
 
@@ -37,6 +39,7 @@ class App extends React.Component {
         photourlhi: responseJson.photourlhi,
         gyro: {},
         initalized: false,
+        showImage: false,
       });
 
       // create setupGyro instance for requesting permission to device event data
@@ -60,11 +63,15 @@ class App extends React.Component {
   dataHandler(event) {
     //console.log(event);// debug
     const { alpha, beta, gamma } = event;
+    
+    if(Math.floor(this.myApiResponse?.fc?.trueheading) === Math.floor(this.state.gyro.alpha)) this.showImage = true;
+
 
       this.setState({
         gyro: { alpha, beta, gamma },
         photourlhi: this.state.photourlhi,
         initalized: true,
+        showImage: this.showImage,// false by default val
       });
 
   }
@@ -76,6 +83,7 @@ class App extends React.Component {
         gyro: {},
         photourlhi: this.state.photourlhi,
         initalized: true,
+        showImage: false,
       });
     }
   
@@ -89,14 +97,13 @@ class App extends React.Component {
             </button> 
           : <></>}
             
-          <Compass {...this.state} {...this.myApiResponse?.fc} />
+          {(!this.state.showImage) ? <Compass {...this.state} {...this.myApiResponse?.fc} /> : <></>}
 
           {console.log((Math.floor(this.myApiResponse?.fc?.trueheading) === Math.floor(this.state.gyro.alpha)) ? 'YES YES YESS !!!!' : '' )}
-          {/*console.log('this.myApiResponse?.fc?.trueheading:',this.myApiResponse?.fc?.trueheading)*/}
-          {/*console.log('this.state.gyro.alpha:',this.state.gyro.alpha)*/}
+
 
           <img src={this.state.photourlhi} 
-            className={((Math.floor(this.myApiResponse?.fc?.trueheading) === Math.floor(this.state.gyro.alpha))) ? "App-logo" : "App-view"} 
+            className={(((this.state.showImage))) ? "App-view" : "App-hide"} 
             alt="logo" />
         </header>
       </div>
