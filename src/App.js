@@ -89,7 +89,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          {(this.state.photourlhi !== logo && this.state.initalized === false) 
+          {(this.state.initalized === false) 
           ? <button type="button" ref={this.myButtonRef} onClick={initHandler.bind(this)} >
               You recieved a SeeFarAway vision.<br/>Tap here to view.
             </button> 
