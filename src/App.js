@@ -27,6 +27,8 @@ class App extends React.Component {
       initalized: false,
       showImage: false,
     };
+
+    this.myScreenOrientation = window.screen.orientation;
   }
 
   componentDidMount() {
@@ -54,7 +56,7 @@ class App extends React.Component {
 
   getUuidFromUrl() {
     
-    window.screen.orientation?.lock("portrait");
+    this.myScreenOrientation.lock("portrait");
     
     if (window.location.search.charAt(0) === '?'){
       return window.location.search.substring(1);
