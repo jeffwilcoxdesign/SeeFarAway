@@ -6,3 +6,27 @@
   left: 0;
   width: 100%;
 }
+@media (orientation: landscape) {
+  .Compass, .Compass-asset {
+    height: 65vh;
+    width: 65vh;
+  }
+  .Compass {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+}
+@media (orientation: portrait) {
+  .Compass, .Compass-asset {
+    height: auto;
+    width: 100%;
+  }
+  .Compass {
+    bottom: 0;
+    left: 0;
+
+  }
+
+}

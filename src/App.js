@@ -28,10 +28,11 @@ class App extends React.Component {
       showImage: false,
     };
 
-    this.myScreenOrientation = window.screen.orientation;
+    //this.myScreenOrientation = window.screen.orientation;
   }
 
   componentDidMount() {
+    $('*').bind('touchmove', false);
     fetch('https://api.codetabs.com/v1/proxy/?quest=https://api.faraway.cam/v1/uuid/'+this.getUuidFromUrl()+'?API_KEY=123')
     .then((response) => response.json())
     .then((responseJson) => {
@@ -56,7 +57,7 @@ class App extends React.Component {
 
   getUuidFromUrl() {
     
-    this.myScreenOrientation.lock("portrait");
+    //this.myScreenOrientation?.lock("portrait");
     
     if (window.location.search.charAt(0) === '?'){
       return window.location.search.substring(1);
