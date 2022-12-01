@@ -62,3 +62,7 @@ button {
   border-radius: 0px;
   background: white;
 }
+
+html {
+  background-color: black;
+}

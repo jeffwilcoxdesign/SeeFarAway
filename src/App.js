@@ -32,7 +32,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    $('*').bind('touchmove', false);
+    //$('*').bind('touchmove', false);
     fetch('https://api.codetabs.com/v1/proxy/?quest=https://api.faraway.cam/v1/uuid/'+this.getUuidFromUrl()+'?API_KEY=123')
     .then((response) => response.json())
     .then((responseJson) => {
